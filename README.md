@@ -1,2 +1,2 @@
 # e-commerce-tech
-Trabalho de faculdade - Projetos I
+Front-end para trabalho da faculdade UNIARARAS
