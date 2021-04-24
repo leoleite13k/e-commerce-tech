@@ -2,10 +2,7 @@ import React from 'react';
 import {
   RouteProps as ReactDOMRouteProps,
   Route as ReactDOMRoute,
-  Redirect,
 } from 'react-router-dom';
-
-// import { useAuth } from '../hooks/auth';
 
 interface IRoute extends ReactDOMRouteProps {
   isPrivate?: boolean;
@@ -17,23 +14,13 @@ const Route: React.FC<IRoute> = ({
   component: Component,
   ...rest
 }) => {
-  // const { user } = useAuth();
 
   return (
     <ReactDOMRoute
       {...rest}
-      render={({ location }) => {
-        // return isPrivate === !!user ? (
-        //   <Component />
-        // ) : (
-          <Redirect
-            to={{
-              pathname: isPrivate ? '/siginin' : '/',
-              state: { from: location },
-            }}
-          />
-        // );
-      }}
+      render={() => (
+        <Component />
+      )}
     />
   );
 };
