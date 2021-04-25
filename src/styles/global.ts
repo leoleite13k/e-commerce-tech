@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { lighten } from 'polished';
 
 export default createGlobalStyle`
   * {
@@ -8,12 +9,33 @@ export default createGlobalStyle`
     outline: 0;
   }
   body {
-    background: #fff;
-    color: #000;
+    background: #222831;
+    color: #eee;
     -webkit-font-smoothing: antialiased;
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #222831;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #393e46;
+      border-radius: 20px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: ${lighten(0.05, '#393e46')};
+    }
   }
   border-style, input, button {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Roboto', serif;
     font-size: 16px;
   }
   h1, h2, h3, h4, h5, h6, strong {
