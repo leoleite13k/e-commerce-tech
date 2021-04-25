@@ -10,6 +10,17 @@ interface IDataProduct {
   promocao: boolean;
 }
 
+interface IDataCard {
+  frete: number;
+  itens: {
+    id: string;
+    nome: string;
+    preco: number;
+    foto?: string;
+    quantidade: number;
+  }[]
+}
+
 
 export const dataProduct: IDataProduct[] = [
   {
@@ -94,3 +105,45 @@ export const dataProduct: IDataProduct[] = [
     promocao: false,
   }
 ]
+
+
+export const dataCard: IDataCard = {
+  frete: 30,
+  itens: [
+    {
+      id: uuidv4(),
+      nome: 'Mouse Logitech G20',
+      preco: 90.20,
+      foto: 'https://resource.logitechg.com/content/dam/gaming/en/products/g203/g203-gallery-1.png',
+      quantidade: 10,
+    },
+    {
+      id: uuidv4(),
+      nome: 'Monitor LG ultrawide 20"',
+      preco: 290.90,
+      foto: 'https://images-americanas.b2w.io/produtos/01/00/offers/01/00/item/133777/3/133777366_1GG.png',
+      quantidade: 100,
+    },
+    {
+      id: uuidv4(),
+      nome: 'Teclado Redragon Kumura',
+      preco: 150.99,
+      foto: 'https://img.terabyteshop.com.br/archive/3643141585/teclado-redragon-kumara-led-k552-01.png',
+      quantidade: 110,
+    },
+    {
+      id: uuidv4(),
+      nome: 'Mousepad Razer Speed',
+      preco: 80.00,
+      foto: 'https://img.terabyteshop.com.br/produto/g/mouse-pad-razer-goliathus-medium-control_29522.png',
+      quantidade: 70,
+    },
+    {
+      id: uuidv4(),
+      nome: 'Placa de video GTX 1660 GeForce',
+      preco: 1000.90,
+      foto: 'https://img.terabyteshop.com.br/produto/g/placa-de-video-galax-geforce-gtx-1660-ti-oc-6gb-60irl7dsy91c-gddr6-pci-exp_68119.png',
+      quantidade: 40,
+    },
+  ]
+}

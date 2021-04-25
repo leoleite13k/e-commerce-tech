@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
+
 import { MAX_WIDTH_MEDIUM } from '../../utils/contants';
 
 export const Container = styled.div`
@@ -6,7 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 36px;
+  padding: 0px 36px 36px;
 `;
 
 export const SearchBar = styled.div`
@@ -25,7 +27,6 @@ export const SearchBar = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  flex: 0 1 n;
   flex-wrap: wrap;
   max-width: ${MAX_WIDTH_MEDIUM + 16}px;
   justify-content: center;
@@ -54,7 +55,7 @@ export const Card = styled.button`
     transform: scale(1.12);
   }
 
-  svg {
+  > svg {
     position: absolute;
     top: -2px;
     left: -12px;
@@ -68,14 +69,48 @@ export const Card = styled.button`
     height: 60%;
     width: 100%;
   }
+`;
 
-  strong {
-    margin-top: 8px;
-    font-weight: bold;
+export const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 4px;
+
+    strong {
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    span {
+      margin-top: 2px;
+      text-align: left;
+    }
   }
 
-  span {
-    margin-top: 2px;
-    text-align: left;
+  > button {
+    width: 50px;
+    height: 25px;
+    border: none;
+    background-color: transparent;
+    border-radius: 20px;
+    z-index: 3;
+    background-color: #fdca40;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+
+    transition: background-color .6s;
+
+    &:hover {
+      background-color: ${darken(0.16, '#fdca40')};
+    }
   }
 `;

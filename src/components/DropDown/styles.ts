@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { lighten } from 'polished';
+import { MAX_WIDTH_SMALL } from '../../utils/contants';
 
 interface IContainer {
   isOpen: boolean;
@@ -8,6 +9,7 @@ interface IContainer {
 
 interface IButton {
   widthComponent: string;
+  isOpen: boolean;
 }
 
 interface IItem {
@@ -15,25 +17,26 @@ interface IItem {
 }
 
 export const Container = styled.div<IContainer>`
-  /* position: relative; */
+  height: 100%;
+  width: 100%;
+  max-width: ${({ widthComponent }) => widthComponent};
 
   ul {
     position: absolute;
-    margin-top: 6px;
+    margin-top: 2px;
     display: ${({ isOpen }) => isOpen ? 'block' : 'none'};
-    z-index: 5;
+    z-index: 3;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 
     max-height: 215px;
-    width: ${({ widthComponent }) => widthComponent};
+    width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    width: calc(${({ widthComponent }) => widthComponent} - 22px);
+    max-width: calc(${({ widthComponent }) => widthComponent} - 22px);
     -webkit-box-shadow: 0px 10px 34px 5px rgba(0,0,0,0.4);
     box-shadow: 0px 10px 34px 5px rgba(0,0,0,0.4);
     background-color: #00adb5;
-
 
     /* width */
     ::-webkit-scrollbar {
@@ -55,20 +58,34 @@ export const Container = styled.div<IContainer>`
     ::-webkit-scrollbar-thumb:hover {
       background: ${lighten(0.05, '#393e46')};
     }
+
+    @media(max-width: ${MAX_WIDTH_SMALL}px) {
+      max-width: 120px;
+    }
+  }
+
+  @media(max-width: ${MAX_WIDTH_SMALL}px) {
+    max-width: 140px;
   }
 `;
 
 export const Button = styled.button<IButton>`
-  width: ${({ widthComponent }) => widthComponent};
+  width: 100%;
   height: 100%;
   border: none;
   background-color: #393e46;
   color: #eee;
   padding-right: 14px;
+  padding-left: 14px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  > svg {
+    transition: transform .6s;
+    transform: ${({ isOpen }) => !!isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
+  }
 `;
 
 export const Item = styled.ol<IItem>`

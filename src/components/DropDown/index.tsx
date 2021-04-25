@@ -1,16 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, HTMLAttributes } from 'react';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
 import { Container, Button, Item } from './styles';
 
-export interface IDropDown {
+export interface IDropDown extends HTMLAttributes<HTMLDivElement> {
   options: string[];
   value: string;
   handleChange(valeu: string): void;
   widthComponent?: string;
 }
 
-const DropDown: React.FC<IDropDown> = ({ options, value, handleChange, widthComponent = '200px' }) => {
+const DropDown: React.FC<IDropDown> = ({ options, value, handleChange, widthComponent = '200px', ...rest }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const wrapperRef = useRef(null);
@@ -32,9 +32,16 @@ const DropDown: React.FC<IDropDown> = ({ options, value, handleChange, widthComp
 
   useOutsideAlerter(wrapperRef);
 
+  console.log(isOpen)
+
   return (
-    <Container ref={wrapperRef} isOpen={isOpen} widthComponent={widthComponent}>
-      <Button type="button" onClick={() => setIsOpen(!isOpen)} widthComponent={widthComponent}>
+    <Container ref={wrapperRef} isOpen={isOpen} widthComponent={widthComponent} {...rest}>
+      <Button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        isOpen={isOpen}
+        widthComponent={widthComponent}
+      >
         <span>{value}</span>
         <MdKeyboardArrowDown size={20} color="#eee" />
       </Button>
@@ -42,7 +49,7 @@ const DropDown: React.FC<IDropDown> = ({ options, value, handleChange, widthComp
 
       <ul>
         {options.map(option => (
-          <Item isSelected={option === value}>
+          <Item key={option} isSelected={option === value}>
             <button type="button" onClick={() => {
               handleChange(option);
               setIsOpen(false);
