@@ -8,8 +8,18 @@ export interface IDivider {
   horizontal?: boolean;
 }
 
-const Divider: React.FC<IDivider> = ({ heightCoponent = '50%', widthComponent = '1px', horizontal = false }) => {
-  return <Container heightCoponent={heightCoponent} widthComponent={widthComponent} horizontal={horizontal} />;
-}
+const Divider: React.FC<IDivider> = ({
+  heightCoponent = '50%',
+  widthComponent = '1px',
+  horizontal = false,
+}) => {
+  return (
+    <Container
+      heightCoponent={heightCoponent}
+      widthComponent={widthComponent}
+      horizontal={horizontal}
+    />
+  );
+};
 
 export default Divider;

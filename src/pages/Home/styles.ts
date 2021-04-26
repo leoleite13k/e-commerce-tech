@@ -42,9 +42,9 @@ export const Card = styled.button`
   border: none;
   border-radius: 6px;
   color: #eee;
-  -webkit-box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.1);
-  box-shadow: 0px 0px 4px 3px rgba(0,0,0,0.1);
-  transition: transform .6s;
+  -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.6s;
 
   display: flex;
   flex-direction: column;
@@ -60,7 +60,7 @@ export const Card = styled.button`
     top: -2px;
     left: -12px;
 
-    transform: rotate(84deg)
+    transform: rotate(84deg);
   }
 
   img {
@@ -107,7 +107,7 @@ export const Footer = styled.div`
     justify-content: center;
     align-self: flex-end;
 
-    transition: background-color .6s;
+    transition: background-color 0.6s;
 
     &:hover {
       background-color: ${darken(0.16, '#fdca40')};

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FiSearch, FiShoppingCart } from 'react-icons/fi'
+import { FiSearch, FiShoppingCart } from 'react-icons/fi';
 import { FaTag } from 'react-icons/fa';
 
 import Input from '../../components/Input';
@@ -10,7 +10,7 @@ import { Container, SearchBar, Content, Card, Footer } from './styles';
 
 import { dataProduct } from '../../data';
 
-const options = ['Todos', 'Computador', 'Monitor', 'Mouse', 'Acessorios']
+const options = ['Todos', 'Computador', 'Monitor', 'Mouse', 'Acessorios'];
 
 const Home: React.FC = () => {
   const [searchInput, setSearchInput] = useState<string>('');
@@ -22,16 +22,18 @@ const Home: React.FC = () => {
         <FiSearch size={22} color="#eee" />
         <Input value={searchInput} setValue={setSearchInput} />
         <Divider />
-        <DropDown options={options} value={option} handleChange={(value) => setOption(value)} />
+        <DropDown
+          options={options}
+          value={option}
+          handleChange={value => setOption(value)}
+        />
       </SearchBar>
 
       <Content>
         {dataProduct.map(product => (
           <Card key={product.id} type="button">
-            {product.promocao && (
-              <FaTag color="#00adb5" size={20} />
-            )}
-            <img src={product.foto} alt="produto"/>
+            {product.promocao && <FaTag color="#00adb5" size={20} />}
+            <img src={product.foto} alt="produto" />
 
             <Footer>
               <div>
@@ -40,7 +42,7 @@ const Home: React.FC = () => {
               </div>
               <button type="button">
                 +
-                <FiShoppingCart size={18} color='#393e46' />
+                <FiShoppingCart size={18} color="#393e46" />
               </button>
             </Footer>
           </Card>
@@ -48,6 +50,6 @@ const Home: React.FC = () => {
       </Content>
     </Container>
   );
-}
+};
 
 export default Home;

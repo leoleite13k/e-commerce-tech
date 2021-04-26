@@ -4,10 +4,10 @@ import React from 'react';
 
 const SignIn: React.FC = () => {
   return (
-    <div >
+    <div>
       <strong>SignIn</strong>
     </div>
   );
-}
+};
 
 export default SignIn;

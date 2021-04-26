@@ -4,6 +4,6 @@ import React from 'react';
 
 const Historic: React.FC = () => {
   return <div />;
-}
+};
 
 export default Historic;

@@ -11,7 +11,13 @@ interface IInput extends HTMLAttributes<HTMLInputElement> {
 const Input: React.FC<IInput> = ({ value, setValue, ...rest }) => {
   return (
     <Container>
-      <input type="text" name="search" {...rest} value={value} onChange={event => setValue(event.currentTarget.value)} />
+      <input
+        type="text"
+        name="search"
+        {...rest}
+        value={value}
+        onChange={event => setValue(event.currentTarget.value)}
+      />
       {!!value && (
         <Close type="button" onClick={() => setValue('')}>
           <IoIosCloseCircle size={20} color="#eee" />
@@ -19,6 +25,6 @@ const Input: React.FC<IInput> = ({ value, setValue, ...rest }) => {
       )}
     </Container>
   );
-}
+};
 
 export default Input;

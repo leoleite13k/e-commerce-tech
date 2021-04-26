@@ -8,6 +8,6 @@ const SignUp: React.FC = () => {
       <strong>SignUp</strong>
     </div>
   );
-}
+};
 
 export default SignUp;

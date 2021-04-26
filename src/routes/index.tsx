@@ -19,7 +19,12 @@ const Routes: React.FC = () => {
       <Route path="/signin" layout={() => <></>} exact component={SignIn} />
       <Route path="/signup" layout={() => <></>} component={SignUp} />
       <Route path="/card" exact layout={LayoutDefault} component={Card} />
-      <Route path="/historic" exact layout={LayoutDefault} component={Historic} />
+      <Route
+        path="/historic"
+        exact
+        layout={LayoutDefault}
+        component={Historic}
+      />
       <Route path="/product" exact layout={LayoutDefault} component={Product} />
     </Switch>
   );

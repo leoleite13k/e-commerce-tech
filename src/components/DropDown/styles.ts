@@ -24,7 +24,7 @@ export const Container = styled.div<IContainer>`
   ul {
     position: absolute;
     margin-top: 2px;
-    display: ${({ isOpen }) => isOpen ? 'block' : 'none'};
+    display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
     z-index: 3;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -34,8 +34,8 @@ export const Container = styled.div<IContainer>`
     overflow-y: auto;
     overflow-x: hidden;
     max-width: calc(${({ widthComponent }) => widthComponent} - 22px);
-    -webkit-box-shadow: 0px 10px 34px 5px rgba(0,0,0,0.4);
-    box-shadow: 0px 10px 34px 5px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0px 10px 34px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 10px 34px 5px rgba(0, 0, 0, 0.4);
     background-color: #00adb5;
 
     /* width */
@@ -59,12 +59,12 @@ export const Container = styled.div<IContainer>`
       background: ${lighten(0.05, '#393e46')};
     }
 
-    @media(max-width: ${MAX_WIDTH_SMALL}px) {
+    @media (max-width: ${MAX_WIDTH_SMALL}px) {
       max-width: 120px;
     }
   }
 
-  @media(max-width: ${MAX_WIDTH_SMALL}px) {
+  @media (max-width: ${MAX_WIDTH_SMALL}px) {
     max-width: 140px;
   }
 `;
@@ -83,8 +83,8 @@ export const Button = styled.button<IButton>`
   justify-content: space-between;
 
   > svg {
-    transition: transform .6s;
-    transform: ${({ isOpen }) => !!isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
+    transition: transform 0.6s;
+    transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
   }
 `;
 
@@ -97,18 +97,22 @@ export const Item = styled.ol<IItem>`
 
     display: flex;
     justify-content: flex-start;
-    background-color: ${({ isSelected }) => isSelected ? '#00adb5' : '#393e46'};
+    background-color: ${({ isSelected }) =>
+      isSelected ? '#00adb5' : '#393e46'};
     border: none;
-    color: ${({ isSelected }) => isSelected ? '#393e46' : '#eee'};
-    ${({ isSelected }) => isSelected && css`
-      margin-left: 4px;
-    `}
+    color: ${({ isSelected }) => (isSelected ? '#393e46' : '#eee')};
+    ${({ isSelected }) =>
+      isSelected &&
+      css`
+        margin-left: 4px;
+      `}
 
     transition: margin .4s;
 
     &:hover {
       margin-left: 4px;
-      background-color: ${({ isSelected }) => isSelected ? lighten(0.02, '#00adb5') : lighten(0.02, '#393e46')};
+      background-color: ${({ isSelected }) =>
+        isSelected ? lighten(0.02, '#00adb5') : lighten(0.02, '#393e46')};
     }
   }
 `;

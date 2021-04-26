@@ -16,7 +16,6 @@ const Route: React.FC<IRoute> = ({
   layout: Layout,
   ...rest
 }) => {
-
   return (
     <ReactDOMRoute
       {...rest}

@@ -22,4 +22,3 @@ export const Close = styled.button`
   align-items: center;
   justify-content: center;
 `;
-

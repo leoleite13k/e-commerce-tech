@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { useState, useRef, useEffect, HTMLAttributes } from 'react';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
@@ -10,7 +12,13 @@ export interface IDropDown extends HTMLAttributes<HTMLDivElement> {
   widthComponent?: string;
 }
 
-const DropDown: React.FC<IDropDown> = ({ options, value, handleChange, widthComponent = '200px', ...rest }) => {
+const DropDown: React.FC<IDropDown> = ({
+  options,
+  value,
+  handleChange,
+  widthComponent = '200px',
+  ...rest
+}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const wrapperRef = useRef(null);
@@ -23,19 +31,22 @@ const DropDown: React.FC<IDropDown> = ({ options, value, handleChange, widthComp
         }
       }
 
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
       return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
+        document.removeEventListener('mousedown', handleClickOutside);
       };
     }, [ref]);
   }
 
   useOutsideAlerter(wrapperRef);
 
-  console.log(isOpen)
-
   return (
-    <Container ref={wrapperRef} isOpen={isOpen} widthComponent={widthComponent} {...rest}>
+    <Container
+      ref={wrapperRef}
+      isOpen={isOpen}
+      widthComponent={widthComponent}
+      {...rest}
+    >
       <Button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -46,14 +57,16 @@ const DropDown: React.FC<IDropDown> = ({ options, value, handleChange, widthComp
         <MdKeyboardArrowDown size={20} color="#eee" />
       </Button>
 
-
       <ul>
         {options.map(option => (
           <Item key={option} isSelected={option === value}>
-            <button type="button" onClick={() => {
-              handleChange(option);
-              setIsOpen(false);
-            }}>
+            <button
+              type="button"
+              onClick={() => {
+                handleChange(option);
+                setIsOpen(false);
+              }}
+            >
               {option}
             </button>
           </Item>
@@ -61,6 +74,6 @@ const DropDown: React.FC<IDropDown> = ({ options, value, handleChange, widthComp
       </ul>
     </Container>
   );
-}
+};
 
 export default DropDown;
