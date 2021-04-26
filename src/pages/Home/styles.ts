@@ -8,7 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0px 36px 36px;
+  padding: 0px 36px 32px;
 `;
 
 export const SearchBar = styled.div`
@@ -42,7 +42,7 @@ export const Card = styled.button`
   border: none;
   border-radius: 6px;
   color: #eee;
-  -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.1);
   transition: transform 0.6s;
 

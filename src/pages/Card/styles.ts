@@ -8,7 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0px 36px 36px;
+  padding: 32px 36px 32px;
 `;
 
 export const Content = styled.div`
@@ -17,8 +17,9 @@ export const Content = styled.div`
   max-width: ${MAX_WIDTH_SMALL}px;
   padding: 6px;
   margin: 8px 0px;
-  -webkit-box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, 0.73);
-  box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, 0.73);
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.1);
 
   display: flex;
 
@@ -43,7 +44,7 @@ export const Content = styled.div`
 
       svg {
         position: absolute;
-        top: -6px;
+        top: -8px;
         left: -24px;
 
         transform: rotate(84deg);
@@ -133,8 +134,9 @@ export const Total = styled.div`
   max-width: ${MAX_WIDTH_SMALL}px;
   padding: 12px;
   margin: 8px 0px;
-  -webkit-box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, 0.73);
-  box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, 0.73);
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.1);
 
   display: flex;
 
