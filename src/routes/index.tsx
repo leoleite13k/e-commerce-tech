@@ -16,8 +16,8 @@ const Routes: React.FC = () => {
   return (
     <Switch>
       <Route path="/" exact layout={LayoutDefault} component={Home} />
-      <Route path="/signin" layout={() => <></>} exact component={SignIn} />
-      <Route path="/signup" layout={() => <></>} component={SignUp} />
+      <Route path="/signin" component={SignIn} />
+      <Route path="/signup" component={SignUp} />
       <Route path="/card" exact layout={LayoutDefault} component={Card} />
       <Route
         path="/historic"
@@ -25,7 +25,12 @@ const Routes: React.FC = () => {
         layout={LayoutDefault}
         component={Historic}
       />
-      <Route path="/product" exact layout={LayoutDefault} component={Product} />
+      <Route
+        path="/product/:id"
+        exact
+        layout={LayoutDefault}
+        component={Product}
+      />
     </Switch>
   );
 };

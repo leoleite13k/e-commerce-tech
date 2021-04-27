@@ -15,7 +15,7 @@ export const Content = styled.div`
   height: ${MAX_WIDTH_SMALL / 3}px;
   width: 100%;
   max-width: ${MAX_WIDTH_SMALL}px;
-  padding: 6px;
+  padding: 12px;
   margin: 8px 0px;
   border-radius: 6px;
   -webkit-box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.1);

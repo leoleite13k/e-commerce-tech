@@ -37,7 +37,7 @@ export const Card = styled.button`
   height: ${MAX_WIDTH_MEDIUM / 4}px;
   width: ${MAX_WIDTH_MEDIUM / 4}px;
   margin: 16px;
-  padding: 12px 8px;
+  padding: 16px;
   background-color: transparent;
   border: none;
   border-radius: 6px;

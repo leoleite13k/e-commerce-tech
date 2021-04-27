@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-interface IDataProduct {
+export interface IDataProduct {
   id: string;
   nome: string;
   preco: number;
@@ -10,7 +10,7 @@ interface IDataProduct {
   promocao: boolean;
 }
 
-interface IDataCard {
+export interface IDataCard {
   frete: number;
   itens: {
     id: string;

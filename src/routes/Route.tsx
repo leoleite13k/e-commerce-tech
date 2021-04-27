@@ -6,7 +6,7 @@ import {
 
 interface IRoute extends ReactDOMRouteProps {
   isPrivate?: boolean;
-  layout: React.ComponentType;
+  layout?: React.ComponentType;
   component: React.ComponentType;
 }
 
@@ -20,9 +20,15 @@ const Route: React.FC<IRoute> = ({
     <ReactDOMRoute
       {...rest}
       render={() => (
-        <Layout>
-          <Component />
-        </Layout>
+        <>
+          {Layout ? (
+            <Layout>
+              <Component />
+            </Layout>
+          ) : (
+            <Component />
+          )}
+        </>
       )}
     />
   );

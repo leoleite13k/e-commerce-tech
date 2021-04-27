@@ -6,7 +6,7 @@ import { BsArrowLeft } from 'react-icons/bs';
 import { Container, Header, Counter } from './styles';
 
 const Default: React.FC = ({ children }) => {
-  const historic = useHistory();
+  const history = useHistory();
   const location = useLocation();
 
   return (
@@ -14,14 +14,14 @@ const Default: React.FC = ({ children }) => {
       <Header>
         <div>
           {location.key && (
-            <button type="button" onClick={() => historic.goBack()}>
+            <button type="button" onClick={() => history.goBack()}>
               <BsArrowLeft size={24} color="#eee" />
             </button>
           )}
         </div>
         <div />
         <div>
-          <button type="button" onClick={() => historic.push('/card')}>
+          <button type="button" onClick={() => history.push('/card')}>
             <FiShoppingCart size={24} color="#eee" />
             <Counter>
               <span>100</span>
