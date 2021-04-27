@@ -13,9 +13,10 @@ const Button: React.FC<IButton> = ({
   secondary = false,
   isLoading = false,
   children,
+  ...rest
 }) => {
   return (
-    <Container type="button" secondary={secondary}>
+    <Container type="button" secondary={secondary} {...rest}>
       {isLoading ? <Loader /> : children}
     </Container>
   );

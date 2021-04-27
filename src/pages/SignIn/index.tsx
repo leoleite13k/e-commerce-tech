@@ -1,25 +1,31 @@
 import React, { useState } from 'react';
-import { FiUser, FiKey } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
+import { FiKey } from 'react-icons/fi';
+import { AiOutlineMail } from 'react-icons/ai';
 
 import Button from '../../components/Button';
 import InputIcon from '../../components/Input/InputIcon';
 
-import { Container, Content, ContentButton } from './styles';
+import { Container, ContentButton } from './styles';
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
+  const history = useHistory();
+
   return (
     <Container>
-      <Content>
+      <form>
         <h1>Login</h1>
         <InputIcon
+          placeholder="E-mail"
           value={email}
           setValue={setEmail}
-          icon={() => <FiUser size={20} />}
+          icon={() => <AiOutlineMail size={20} />}
         />
         <InputIcon
+          placeholder="Senha"
           type="password"
           value={password}
           setValue={setPassword}
@@ -30,11 +36,15 @@ const SignIn: React.FC = () => {
 
         <ContentButton>
           <Button type="submit">Entrar</Button>
-          <Button type="button" secondary>
+          <Button
+            secondary
+            type="button"
+            onClick={() => history.push('/signup')}
+          >
             Criar conta
           </Button>
         </ContentButton>
-      </Content>
+      </form>
     </Container>
   );
 };

@@ -9,26 +9,26 @@ export const Container = styled.div`
   justify-content: center;
   padding: 32px 36px;
   height: 100vh;
-`;
 
-export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: ${MAX_WIDTH_MEDIUM / 2}px;
-  padding: 32px;
+  > form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: ${MAX_WIDTH_MEDIUM / 2.3}px;
+    padding: 32px;
 
-  -webkit-box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.1);
 
-  > h1 {
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 16px;
-  }
+    > h1 {
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 16px;
+    }
 
-  > div {
-    margin-top: 12px;
+    > div {
+      margin-top: 12px;
+    }
   }
 `;
 
