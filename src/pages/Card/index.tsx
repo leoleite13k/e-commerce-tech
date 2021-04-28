@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { FaTag } from 'react-icons/fa';
 import { VscTrash } from 'react-icons/vsc';
 
-import { dataCard } from '../../data';
+import { useCard } from '../../hooks/card';
 
 import { Container, Content, Total } from './styles';
 
 const Card: React.FC = () => {
+  const {
+    data,
+    incrementCard,
+    decrementCard,
+    changeValueProduct,
+    removeCard,
+  } = useCard();
+
+  const handleChangeValueProduct = useCallback(
+    (event, id) => {
+      const { value } = event.currentTarget;
+
+      changeValueProduct({ id, value: value ? Number(value) : 0 });
+    },
+    [changeValueProduct],
+  );
+
   return (
     <Container>
-      {dataCard.itens.map(product => (
+      {data.products.map(product => (
         <Content>
           <div>
             {product.promocao && <FaTag color="#00adb5" size={20} />}
@@ -19,16 +36,26 @@ const Card: React.FC = () => {
           <div>
             <div />
             <div>
-              <button type="button">+</button>
-              <input type="text" />
-              <button type="button">-</button>
+              <button type="button" onClick={() => incrementCard(product)}>
+                +
+              </button>
+              <input
+                type="text"
+                value={product.quantidade}
+                onChange={event => handleChangeValueProduct(event, product.id)}
+              />
+              <button type="button" onClick={() => decrementCard(product)}>
+                -
+              </button>
             </div>
-            <button type="button">
+            <button type="button" onClick={() => removeCard(product)}>
               <VscTrash size={26} color="#f00" />
             </button>
           </div>
           <div>
-            <strong>R$ 10.00</strong>
+            <strong>{`R$ ${(product.quantidade * product.preco).toFixed(
+              2,
+            )}`}</strong>
           </div>
         </Content>
       ))}
@@ -39,11 +66,22 @@ const Card: React.FC = () => {
         </div>
         <div>
           <span>Quantidade</span>
-          <strong>100</strong>
+          <strong>
+            {data.products.reduce(
+              (accumulator, product) => accumulator + product.quantidade,
+              0,
+            )}
+          </strong>
         </div>
         <div>
           <span>Total</span>
-          <strong>R$ 1000.00</strong>
+          <strong>{`R$ ${data.products
+            .reduce(
+              (accumulator, product) =>
+                accumulator + product.quantidade * product.preco,
+              0,
+            )
+            .toFixed(2)}`}</strong>
         </div>
       </Total>
     </Container>

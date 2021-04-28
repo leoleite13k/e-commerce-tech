@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FiSearch, FiShoppingCart } from 'react-icons/fi';
 import { FaTag } from 'react-icons/fa';
 
+import { useCard } from '../../hooks/card';
 import Input from '../../components/Input';
 
 import { Container, SearchBar, Content, Card, Footer } from './styles';
@@ -13,6 +15,7 @@ const Home: React.FC = () => {
   const [searchInput, setSearchInput] = useState<string>('');
 
   const history = useHistory();
+  const { addCard } = useCard();
 
   return (
     <Container>
@@ -24,6 +27,7 @@ const Home: React.FC = () => {
       <Content>
         {dataProduct.map(product => (
           <Card
+            className="card"
             key={product.id}
             type="button"
             onClick={() => history.push(`/product/${product.id}`)}
@@ -36,7 +40,13 @@ const Home: React.FC = () => {
                 <strong>{`R$ ${product.preco.toLocaleString()}`}</strong>
                 <span>{product.nome}</span>
               </div>
-              <button type="button">
+              <button
+                type="button"
+                onClick={(event: any) => {
+                  event.stopPropagation();
+                  addCard(product);
+                }}
+              >
                 +
                 <FiShoppingCart size={18} color="#393e46" />
               </button>

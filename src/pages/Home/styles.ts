@@ -34,6 +34,7 @@ export const Content = styled.div`
 
 export const Card = styled.button`
   position: relative;
+  z-index: 2;
   height: ${MAX_WIDTH_MEDIUM / 4}px;
   width: ${MAX_WIDTH_MEDIUM / 4}px;
   margin: 16px;
@@ -94,12 +95,13 @@ export const Footer = styled.div`
   }
 
   > button {
+    position: relative;
     width: 50px;
     height: 25px;
     border: none;
     background-color: transparent;
     border-radius: 20px;
-    z-index: 3;
+    z-index: 4;
     background-color: #fdca40;
 
     display: flex;

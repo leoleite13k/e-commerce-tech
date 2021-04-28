@@ -1,30 +1,21 @@
-import { v4 as uuidv4 } from 'uuid';
-
 export interface IDataProduct {
-  id: string;
+  id: number;
   nome: string;
   preco: number;
   foto?: string;
   quantidade: number;
-  descricao: string;
+  descricao?: string;
   promocao: boolean;
 }
 
 export interface IDataCard {
   frete: number;
-  itens: {
-    id: string;
-    nome: string;
-    preco: number;
-    foto?: string;
-    quantidade: number;
-    promocao: boolean;
-  }[];
+  itens: IDataProduct[];
 }
 
 export const dataProduct: IDataProduct[] = [
   {
-    id: uuidv4(),
+    id: 1,
     nome: 'Mouse Logitech G20',
     preco: 90.2,
     foto:
@@ -34,7 +25,7 @@ export const dataProduct: IDataProduct[] = [
     promocao: false,
   },
   {
-    id: uuidv4(),
+    id: 2,
     nome: 'Monitor LG ultrawide 20"',
     preco: 290.9,
     foto:
@@ -45,7 +36,7 @@ export const dataProduct: IDataProduct[] = [
     promocao: true,
   },
   {
-    id: uuidv4(),
+    id: 3,
     nome: 'Teclado Redragon Kumura',
     preco: 150.99,
     foto:
@@ -55,7 +46,7 @@ export const dataProduct: IDataProduct[] = [
     promocao: false,
   },
   {
-    id: uuidv4(),
+    id: 4,
     nome: 'Mousepad Razer Speed',
     preco: 80.0,
     foto:
@@ -66,7 +57,7 @@ export const dataProduct: IDataProduct[] = [
     promocao: false,
   },
   {
-    id: uuidv4(),
+    id: 5,
     nome: 'Placa de video GTX 1660 GeForce',
     preco: 1000.9,
     foto:
@@ -76,7 +67,7 @@ export const dataProduct: IDataProduct[] = [
     promocao: true,
   },
   {
-    id: uuidv4(),
+    id: 6,
     nome: 'Alexa doth v4',
     preco: 300.5,
     foto:
@@ -87,7 +78,7 @@ export const dataProduct: IDataProduct[] = [
     promocao: false,
   },
   {
-    id: uuidv4(),
+    id: 7,
     nome: 'Macbook Pro 2019',
     preco: 20000.0,
     foto: 'https://pngimg.com/uploads/macbook/macbook_PNG8.png',
@@ -97,7 +88,7 @@ export const dataProduct: IDataProduct[] = [
     promocao: true,
   },
   {
-    id: uuidv4(),
+    id: 8,
     nome: 'Adptador Type C',
     preco: 180.1,
     foto: 'https://i.ibb.co/bvJm1vj/adapter-removebg-preview.png',
@@ -106,7 +97,7 @@ export const dataProduct: IDataProduct[] = [
     promocao: false,
   },
   {
-    id: uuidv4(),
+    id: 9,
     nome: 'Teclado Razer Chroma',
     preco: 500.7,
     foto:
@@ -121,7 +112,7 @@ export const dataCard: IDataCard = {
   frete: 30,
   itens: [
     {
-      id: uuidv4(),
+      id: 1,
       nome: 'Mouse Logitech G20',
       preco: 90.2,
       foto:
@@ -130,7 +121,7 @@ export const dataCard: IDataCard = {
       promocao: false,
     },
     {
-      id: uuidv4(),
+      id: 2,
       nome: 'Monitor LG ultrawide 20"',
       preco: 290.9,
       foto:
@@ -139,7 +130,7 @@ export const dataCard: IDataCard = {
       promocao: true,
     },
     {
-      id: uuidv4(),
+      id: 3,
       nome: 'Teclado Redragon Kumura',
       preco: 150.99,
       foto:
@@ -148,7 +139,7 @@ export const dataCard: IDataCard = {
       promocao: false,
     },
     {
-      id: uuidv4(),
+      id: 4,
       nome: 'Mousepad Razer Speed',
       preco: 80.0,
       foto:
@@ -157,7 +148,7 @@ export const dataCard: IDataCard = {
       promocao: false,
     },
     {
-      id: uuidv4(),
+      id: 5,
       nome: 'Placa de video GTX 1660 GeForce',
       preco: 1000.9,
       foto:
