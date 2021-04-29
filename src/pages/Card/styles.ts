@@ -7,8 +7,19 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  min-height: calc(100vh - 90px);
   padding: 32px 36px 32px;
+`;
+
+export const Empty = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20%;
+
+  h1 {
+    text-align: center;
+  }
 `;
 
 export const Content = styled.div`
