@@ -20,7 +20,7 @@ export const Content = styled.div`
   height: 42px;
   padding: 8px;
   padding-right: 27px;
-  margin-top: 12px;
+  margin-top: 16px;
   border: 1px solid '#393e46';
   border-radius: 6px;
   background-color: #393e46;
