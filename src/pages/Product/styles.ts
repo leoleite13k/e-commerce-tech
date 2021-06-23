@@ -17,6 +17,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   padding: 32px;
+  min-height: 725px;
   max-width: ${MAX_WIDTH_SMALL / 1.5}px;
 
   -webkit-box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.1);

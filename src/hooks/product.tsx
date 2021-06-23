@@ -36,7 +36,8 @@ interface IProductContextData {
   products: IProduct[];
   product?: IProduct;
   loading: boolean;
-  getProducts(idUser?: number): Promise<void>;
+  loadingForm: boolean;
+  getProducts(idUser?: number, nome?: string): Promise<void>;
   getProduct(id: number): Promise<void>;
   addProduct(product: IInputProduct): Promise<void>;
   updateProduct(product: IInputProduct): Promise<void>;
@@ -52,19 +53,22 @@ const ProductProvider: React.FC = ({ children }) => {
     products: [],
   } as IProductState);
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadingForm, setLoadingForm] = useState<boolean>(false);
 
   const history = useHistory();
   const { addToast } = useToast();
 
-  const getProducts = useCallback(async (idUser: number) => {
+  const getProducts = useCallback(async (idUser?: number, nome?: string) => {
     setLoading(true);
 
     let response = null;
 
     if (idUser) {
-      response = await api.get(`produto?id_usuario=${idUser}`);
+      response = await api.get(
+        `produto?id_usuario=${idUser}&nome=${nome || ''}`,
+      );
     } else {
-      response = await api.get('produto');
+      response = await api.get(`produto?nome=${nome || ''}`);
     }
 
     setData({ products: response.data });
@@ -87,7 +91,7 @@ const ProductProvider: React.FC = ({ children }) => {
 
   const addProduct = useCallback(
     async ({ name, price, photo, qtd, description, isPromotion }) => {
-      setLoading(true);
+      setLoadingForm(true);
 
       const user = JSON.parse(
         localStorage.getItem('@eCommerceTech:user') || '',
@@ -113,7 +117,7 @@ const ProductProvider: React.FC = ({ children }) => {
         description: 'Produto cadastrado com sucesso!',
         type: 'success',
       });
-      setLoading(false);
+      setLoadingForm(false);
       history.push('/admin');
     },
     [addToast, history],
@@ -121,7 +125,7 @@ const ProductProvider: React.FC = ({ children }) => {
 
   const updateProduct = useCallback(
     async ({ id, name, price, photo, qtd, description, isPromotion }) => {
-      setLoading(true);
+      setLoadingForm(true);
 
       const user = JSON.parse(
         localStorage.getItem('@eCommerceTech:user') || '',
@@ -147,7 +151,7 @@ const ProductProvider: React.FC = ({ children }) => {
         description: 'Produto atualizado com sucesso!',
         type: 'success',
       });
-      setLoading(false);
+      setLoadingForm(false);
       history.push('/admin');
     },
     [addToast, history],
@@ -178,6 +182,7 @@ const ProductProvider: React.FC = ({ children }) => {
         products: data.products,
         product: data.product,
         loading,
+        loadingForm,
         getProducts,
         getProduct,
         addProduct,

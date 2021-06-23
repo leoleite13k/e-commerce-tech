@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 
-interface IContent {
-  error: boolean;
-}
-
 export const Container = styled.div`
   position: relative;
   width: 100%;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 
   > span {
     position: absolute;
@@ -17,7 +13,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Content = styled.div<IContent>`
+export const Content = styled.div`
   position: relative;
   display: flex;
   align-items: center;
@@ -25,7 +21,7 @@ export const Content = styled.div<IContent>`
   padding: 8px;
   padding-right: 27px;
   margin-top: 12px;
-  border: 1px solid ${({ error }) => (error ? '#f00' : '#393e46')};
+  border: 1px solid '#393e46';
   border-radius: 6px;
   background-color: #393e46;
 
@@ -49,6 +45,12 @@ export const Content = styled.div<IContent>`
   > div {
     margin-right: 1px;
   }
+`;
+
+export const ContentLoader = styled.div`
+  width: 25px;
+  height: 25px;
+  margin-right: 8px !important;
 `;
 
 export const Close = styled.button`

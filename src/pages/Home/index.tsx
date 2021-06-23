@@ -1,31 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FiSearch, FiShoppingCart } from 'react-icons/fi';
+import { FiShoppingCart } from 'react-icons/fi';
 import { FaTag } from 'react-icons/fa';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
+import AwesomeDebouncePromise from 'awesome-debounce-promise';
 
 import { useProduct } from '../../hooks/product';
 import { useCard } from '../../hooks/card';
-import Input from '../../components/Input';
+import InputSearch from '../../components/InputSearch';
 
 import { Container, SearchBar, Content, Card, Footer } from './styles';
 
-const schema = Yup.object().shape({
-  search: Yup.string(),
-});
-
 const Home: React.FC = () => {
-  const { register, handleSubmit, watch, setValue } = useForm({
-    resolver: yupResolver(schema),
-  });
-  const { search } = watch();
+  const [search, setSearch] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const history = useHistory();
   const { products, getProducts } = useProduct();
   const { addCard } = useCard();
+
+  const searchDebounced = AwesomeDebouncePromise(getProducts, 500);
+
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  async function searchProduct(text: string) {
+    setIsLoading(true);
+    setSearch(text);
+    await searchDebounced(undefined, text);
+    setIsLoading(false);
+  }
 
   useEffect(() => {
     getProducts();
@@ -34,12 +36,10 @@ const Home: React.FC = () => {
   return (
     <Container>
       <SearchBar>
-        <Input
-          name="search"
-          register={register}
-          setValue={setValue}
+        <InputSearch
+          handleOnChange={searchProduct}
           value={search}
-          icon={() => <FiSearch size={22} color="#eee" />}
+          isLoading={isLoading}
         />
       </SearchBar>
 

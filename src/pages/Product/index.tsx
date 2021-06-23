@@ -6,10 +6,11 @@ import { useProduct } from '../../hooks/product';
 import { useCard } from '../../hooks/card';
 
 import { Container, Wrapper, Portatil } from './styles';
+import Loader from '../../components/Loader';
 
 const Product: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { product, getProduct } = useProduct();
+  const { product, getProduct, loading } = useProduct();
   const { addCard } = useCard();
 
   useEffect(() => {
@@ -19,30 +20,36 @@ const Product: React.FC = () => {
   return (
     <Container>
       <Wrapper>
-        <Portatil>
-          <img src={product?.foto} alt="produto" />
-          <button
-            type="button"
-            onClick={() => {
-              if (product) {
-                addCard(product);
-              }
-            }}
-          >
-            +
-            <FiShoppingCart size={18} color="#393e46" />
-          </button>
-          <h1>{product?.nome}</h1>
-          <div>
-            <strong>{`R$ ${product?.preco}`}</strong>
-            <strong>{`Qtd: ${product?.quantidade}`}</strong>
-          </div>
-        </Portatil>
+        {loading ? (
+          <Loader height="80px" />
+        ) : (
+          <>
+            <Portatil>
+              <img src={product?.foto} alt="produto" />
+              <button
+                type="button"
+                onClick={() => {
+                  if (product) {
+                    addCard(product);
+                  }
+                }}
+              >
+                +
+                <FiShoppingCart size={18} color="#393e46" />
+              </button>
+              <h1>{product?.nome}</h1>
+              <div>
+                <strong>{`R$ ${product?.preco}`}</strong>
+                <strong>{`Qtd: ${product?.quantidade}`}</strong>
+              </div>
+            </Portatil>
 
-        <div>
-          <h3>Descrição</h3>
-          <span>{product?.descricao}</span>
-        </div>
+            <div>
+              <h3>Descrição</h3>
+              <span>{product?.descricao}</span>
+            </div>
+          </>
+        )}
       </Wrapper>
     </Container>
   );

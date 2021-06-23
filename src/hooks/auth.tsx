@@ -29,6 +29,7 @@ interface ISignUpCredentials {
 
 interface IAuthContextData {
   user: IUser;
+  loading: boolean;
   error: boolean;
   signIn(credentials: ISignInCredentials): Promise<void>;
   signUp(credentials: ISignUpCredentials): Promise<void>;
@@ -47,12 +48,14 @@ const AuthProvider: React.FC = ({ children }) => {
 
     return {} as IAuthState;
   });
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
   const { addToast } = useToast();
 
   const signIn = useCallback(
     async ({ email, password, isAdministrator }) => {
+      setLoading(true);
       setError(false);
 
       const response = await api.post('login', {
@@ -67,10 +70,12 @@ const AuthProvider: React.FC = ({ children }) => {
         localStorage.setItem('@eCommerceTech:user', JSON.stringify(user));
 
         setData({ user });
+        setLoading(false);
         return;
       }
 
       setError(true);
+      setLoading(false);
       addToast({
         title: 'Erro de acesso',
         description: 'Usuário ou senha incorreto',
@@ -88,6 +93,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const signUp = useCallback(
     async ({ name, email, password, isAdministrator }) => {
+      setLoading(true);
       const response = await api.post('usuario', {
         nome: name,
         email,
@@ -106,13 +112,14 @@ const AuthProvider: React.FC = ({ children }) => {
         description: 'Usuário criado com sucesso!',
         type: 'success',
       });
+      setLoading(false);
     },
     [addToast],
   );
 
   return (
     <AuthContext.Provider
-      value={{ user: data.user, error, signIn, signOut, signUp }}
+      value={{ user: data.user, loading, error, signIn, signOut, signUp }}
     >
       {children}
     </AuthContext.Provider>

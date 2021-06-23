@@ -32,7 +32,6 @@ export const Container = styled.div`
 
 export const ContentInput = styled.div`
   > div {
-    margin-bottom: 18px;
     padding-right: 0px;
 
     input {

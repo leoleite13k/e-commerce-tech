@@ -38,7 +38,7 @@ const SignUp: React.FC = () => {
     resolver: yupResolver(schema),
   });
   const { name, email, password, confirmPassword } = watch();
-  const { signUp } = useAuth();
+  const { signUp, loading } = useAuth();
 
   return (
     <Container>
@@ -96,7 +96,9 @@ const SignUp: React.FC = () => {
         </ContentCheckBox>
 
         <ContentButton>
-          <Button type="submit">Cadastrar</Button>
+          <Button type="submit" isLoading={loading}>
+            Cadastrar
+          </Button>
           <Button
             secondary
             type="button"

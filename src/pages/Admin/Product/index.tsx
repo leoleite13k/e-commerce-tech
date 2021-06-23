@@ -14,9 +14,13 @@ import { Container, ContentInput } from './styles';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('Informe o nome'),
-  price: Yup.number().required('Informe o valor'),
+  price: Yup.number()
+    .required('Informe o valor')
+    .typeError('Insira um valor válido'),
   photo: Yup.string(),
-  qtd: Yup.number().required('Informe a quantidade'),
+  qtd: Yup.number()
+    .required('Informe a quantidade')
+    .typeError('Insira uma quantidade válida'),
   description: Yup.string(),
 });
 
@@ -33,7 +37,13 @@ const Product: React.FC = () => {
   const { id } = useParams<{ id?: string }>();
   const { name, price, photo, qtd, description } = watch();
 
-  const { product, updateProduct, addProduct, getProduct } = useProduct();
+  const {
+    product,
+    loadingForm,
+    updateProduct,
+    addProduct,
+    getProduct,
+  } = useProduct();
 
   useEffect(() => {
     if (id) {
@@ -111,7 +121,9 @@ const Product: React.FC = () => {
         </ContentInput>
         <CheckBox label="Promoção" name="isPromotion" register={register} />
 
-        <Button type="submit">{id ? 'Alterar' : 'Cadastrar'}</Button>
+        <Button type="submit" isLoading={loadingForm}>
+          {id ? 'Alterar' : 'Cadastrar'}
+        </Button>
       </form>
     </Container>
   );

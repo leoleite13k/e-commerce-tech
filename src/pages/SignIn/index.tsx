@@ -12,6 +12,7 @@ import Button from '../../components/Button';
 import { useAuth } from '../../hooks/auth';
 
 import { Container, ContentCheckBox, ContentButton } from './styles';
+import Loader from '../../components/Loader';
 
 const schema = Yup.object().shape({
   email: Yup.string().required('Informe o e-mail'),
@@ -31,7 +32,7 @@ const SignIn: React.FC = () => {
     resolver: yupResolver(schema),
   });
   const { email, password } = watch();
-  const { signIn, error } = useAuth();
+  const { signIn, loading, error } = useAuth();
 
   return (
     <Container>
@@ -68,7 +69,9 @@ const SignIn: React.FC = () => {
         </ContentCheckBox>
 
         <ContentButton>
-          <Button type="submit">Entrar</Button>
+          <Button type="submit" isLoading={loading}>
+            Entrar
+          </Button>
           <Button
             secondary
             type="button"
