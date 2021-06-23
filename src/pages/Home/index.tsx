@@ -1,31 +1,50 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FiSearch, FiShoppingCart } from 'react-icons/fi';
 import { FaTag } from 'react-icons/fa';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 
+import { useProduct } from '../../hooks/product';
 import { useCard } from '../../hooks/card';
 import Input from '../../components/Input';
 
 import { Container, SearchBar, Content, Card, Footer } from './styles';
 
-import { dataProduct } from '../../data';
+const schema = Yup.object().shape({
+  search: Yup.string(),
+});
 
 const Home: React.FC = () => {
-  const [searchInput, setSearchInput] = useState<string>('');
+  const { register, handleSubmit, watch, setValue } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const { search } = watch();
 
   const history = useHistory();
+  const { products, getProducts } = useProduct();
   const { addCard } = useCard();
+
+  useEffect(() => {
+    getProducts();
+  }, [getProducts]);
 
   return (
     <Container>
       <SearchBar>
-        <FiSearch size={22} color="#eee" />
-        <Input value={searchInput} setValue={setSearchInput} />
+        <Input
+          name="search"
+          register={register}
+          setValue={setValue}
+          value={search}
+          icon={() => <FiSearch size={22} color="#eee" />}
+        />
       </SearchBar>
 
       <Content>
-        {dataProduct.map(product => (
+        {products.map(product => (
           <Card
             className="card"
             key={product.id}

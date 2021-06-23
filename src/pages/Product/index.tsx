@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FiShoppingCart } from 'react-icons/fi';
 
-import { useCard, IProductCard } from '../../hooks/card';
-import { dataProduct } from '../../data';
+import { useProduct } from '../../hooks/product';
+import { useCard } from '../../hooks/card';
 
 import { Container, Wrapper, Portatil } from './styles';
 
 const Product: React.FC = () => {
-  const [product, setProduct] = useState<IProductCard | undefined>(undefined);
-
   const { id } = useParams<{ id: string }>();
+  const { product, getProduct } = useProduct();
   const { addCard } = useCard();
 
   useEffect(() => {
-    setProduct(dataProduct.find(item => item.id === Number(id)));
-  }, [id]);
+    getProduct(Number(id));
+  }, [getProduct, id]);
 
   return (
     <Container>

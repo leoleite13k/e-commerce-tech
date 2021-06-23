@@ -2,8 +2,10 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { FiShoppingCart } from 'react-icons/fi';
 import { BsArrowLeft } from 'react-icons/bs';
+import { BiExit } from 'react-icons/bi';
 
 import { useCard } from '../../../hooks/card';
+import { useAuth } from '../../../hooks/auth';
 
 import { Container, Header, Counter } from './styles';
 
@@ -11,6 +13,7 @@ const Default: React.FC = ({ children }) => {
   const history = useHistory();
   const location = useLocation();
   const { data } = useCard();
+  const { user, signOut } = useAuth();
 
   return (
     <Container>
@@ -35,6 +38,17 @@ const Default: React.FC = ({ children }) => {
               </span>
             </Counter>
           </button>
+          {!!user && (
+            <button
+              type="button"
+              onClick={() => {
+                signOut();
+                history.push('/signin');
+              }}
+            >
+              <BiExit size={24} color="#eee" />
+            </button>
+          )}
         </div>
       </Header>
       {children}

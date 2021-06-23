@@ -1,15 +1,18 @@
 import React from 'react';
 
-import { AuthProvider } from './auth';
 import { ToastProvider } from './toast';
+import { ProductProvider } from './product';
+import { AuthProvider } from './auth';
 import { CardProvider } from './card';
 
 const AppProvider: React.FC = ({ children }) => (
-  <AuthProvider>
-    <ToastProvider>
-      <CardProvider>{children}</CardProvider>
-    </ToastProvider>
-  </AuthProvider>
+  <ToastProvider>
+    <ProductProvider>
+      <AuthProvider>
+        <CardProvider>{children}</CardProvider>
+      </AuthProvider>
+    </ProductProvider>
+  </ToastProvider>
 );
 
 export default AppProvider;

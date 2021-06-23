@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { lighten } from 'polished';
 
 import { MIN_WIDTH_LARGE } from '../../../utils/contants';
 
@@ -29,22 +28,6 @@ export const Header = styled.div`
     &:nth-child(1) {
       justify-content: flex-start;
       padding-left: 36px;
-
-      > button {
-        border: none;
-        background-color: ${lighten(0.05, '#222831')};
-        padding: 8px;
-        border-radius: 50%;
-        transition: background-color 0.6s;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        &:hover {
-          background-color: ${lighten(0.1, '#222831')};
-        }
-      }
 
       @media (min-width: ${MIN_WIDTH_LARGE}px) {
         padding-left: 72px;

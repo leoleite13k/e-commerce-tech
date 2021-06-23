@@ -1,28 +1,23 @@
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import { FiShoppingCart } from 'react-icons/fi';
-import { BsArrowLeft } from 'react-icons/bs';
+import { BiExit } from 'react-icons/bi';
 
-import { useCard } from '../../../hooks/card';
+import { useAuth } from '../../../hooks/auth';
 
 import { Container, Header } from './styles';
 
 const Admin: React.FC = ({ children }) => {
-  const history = useHistory();
-  const location = useLocation();
+  const { signOut } = useAuth();
 
   return (
     <Container>
       <Header>
+        <div />
+        <div />
         <div>
-          {location.key && (
-            <button type="button" onClick={() => history.goBack()}>
-              <BsArrowLeft size={24} color="#eee" />
-            </button>
-          )}
+          <button type="button" onClick={signOut}>
+            <BiExit size={24} color="#eee" />
+          </button>
         </div>
-        <div />
-        <div />
       </Header>
       {children}
     </Container>

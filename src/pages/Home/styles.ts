@@ -53,7 +53,7 @@ export const Card = styled.button`
   justify-content: space-between;
 
   &:hover {
-    transform: scale(1.12);
+    transform: scale(1.06);
   }
 
   > svg {

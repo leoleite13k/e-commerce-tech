@@ -1,5 +1,6 @@
-import { lighten } from 'polished';
 import styled from 'styled-components';
+import { lighten } from 'polished';
+
 import { MAX_WIDTH_MEDIUM } from '../../../utils/contants';
 
 export const Container = styled.div`
@@ -8,6 +9,22 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding: 32px 36px;
+`;
+
+export const Add = styled.button`
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: ${lighten(0.05, '#222831')};
+  border: none;
+  position: absolute;
+  bottom: 70px;
+  right: 70px;
+  transition: background-color 0.6s;
+
+  &:hover {
+    background-color: ${lighten(0.1, '#222831')};
+  }
 `;
 
 export const Content = styled.div`
@@ -35,7 +52,7 @@ export const Card = styled.div`
   align-self: center;
 
   &:hover {
-    transform: scale(1.12);
+    transform: scale(1.06);
   }
 
   > svg {

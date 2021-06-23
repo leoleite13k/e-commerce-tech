@@ -63,6 +63,10 @@ export const Header = styled.div`
         position: relative;
         border: none;
         background-color: transparent;
+
+        &:not(:last-child) {
+          margin-right: 18px;
+        }
       }
 
       @media (min-width: ${MIN_WIDTH_LARGE}px) {

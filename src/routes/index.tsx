@@ -18,27 +18,44 @@ import Route from './Route';
 const Routes: React.FC = () => {
   return (
     <Switch>
-      <Route path="/" exact layout={LayoutDefault} component={Home} />
+      <Route path="/" exact isGlobal layout={LayoutDefault} component={Home} />
+      <Route path="/card" isGlobal layout={LayoutDefault} component={Card} />
+      <Route
+        path="/product/:id"
+        isGlobal
+        layout={LayoutDefault}
+        component={Product}
+      />
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
-      <Route path="/admin" exact layout={LayoutAdmin} component={AdminHome} />
-      <Route
-        path="/admin/product"
-        layout={LayoutAdmin}
-        component={AdminProduct}
-      />
-      <Route path="/card" exact layout={LayoutDefault} component={Card} />
       <Route
         path="/historic"
-        exact
+        isPrivate
         layout={LayoutDefault}
         component={Historic}
       />
       <Route
-        path="/product/:id"
+        path="/admin"
         exact
-        layout={LayoutDefault}
-        component={Product}
+        isAdmin
+        isPrivate
+        layout={LayoutAdmin}
+        component={AdminHome}
+      />
+      <Route
+        path="/admin/product"
+        exact
+        isAdmin
+        isPrivate
+        layout={LayoutAdmin}
+        component={AdminProduct}
+      />
+      <Route
+        path="/admin/product/:id"
+        isAdmin
+        isPrivate
+        layout={LayoutAdmin}
+        component={AdminProduct}
       />
     </Switch>
   );

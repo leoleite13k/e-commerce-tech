@@ -1,28 +1,48 @@
-import React, { HTMLAttributes } from 'react';
+import React, { InputHTMLAttributes } from 'react';
+import { FieldValues, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { IoIosCloseCircle } from 'react-icons/io';
 
-import { Container, Close } from './styles';
+import Divider from '../Divider';
 
-interface IInput extends HTMLAttributes<HTMLInputElement> {
+import { Container, Content, Close } from './styles';
+
+interface IInput extends InputHTMLAttributes<HTMLInputElement> {
+  name: string;
+  register: UseFormRegister<FieldValues>;
+  setValue: UseFormSetValue<FieldValues>;
   value: string;
-  setValue(value: string): void;
+  error?: { message: string };
+  icon?: React.ComponentType;
 }
 
-const Input: React.FC<IInput> = ({ value, setValue, ...rest }) => {
+const Input: React.FC<IInput> = ({
+  name,
+  register,
+  setValue,
+  value,
+  error,
+  icon: Icon,
+  ...rest
+}) => {
   return (
     <Container>
-      <input
-        type="text"
-        name="search"
-        {...rest}
-        value={value}
-        onChange={event => setValue(event.currentTarget.value)}
-      />
-      {!!value && (
-        <Close type="button" onClick={() => setValue('')}>
-          <IoIosCloseCircle size={20} color="#eee" />
-        </Close>
-      )}
+      <Content error={!!error}>
+        {Icon && (
+          <>
+            <Icon />
+            <Divider heightCoponent="100%" />
+          </>
+        )}
+
+        <input type="text" {...rest} {...register(name)} />
+        {!!value && (
+          <Close type="button" tabIndex={-1} onClick={() => setValue(name, '')}>
+            <IoIosCloseCircle size={20} color="#eee" />
+          </Close>
+        )}
+      </Content>
+
+      {error && <span>{error?.message}</span>}
     </Container>
   );
 };

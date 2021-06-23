@@ -1,20 +1,37 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import React, { createContext, useCallback, useState, useContext } from 'react';
 import api from '../services/api';
+import { useToast } from './toast';
+
+interface IUser {
+  id: number;
+  email: string;
+  nome: string;
+  administrador: boolean;
+}
 
 interface IAuthState {
-  token: string;
-  user: object;
+  user: IUser;
 }
 
 interface ISignInCredentials {
   email: string;
   password: string;
+  isAdministrator: boolean;
+}
+
+interface ISignUpCredentials {
+  name: string;
+  email: string;
+  password: string;
+  isAdministrator: boolean;
 }
 
 interface IAuthContextData {
-  user: object;
+  user: IUser;
+  error: boolean;
   signIn(credentials: ISignInCredentials): Promise<void>;
+  signUp(credentials: ISignUpCredentials): Promise<void>;
   signOut(): void;
 }
 
@@ -22,36 +39,81 @@ const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<IAuthState>(() => {
-    const token = localStorage.getItem('@eCommerceTech:token');
     const user = localStorage.getItem('@eCommerceTech:user');
 
-    if (token && user) {
-      return { token, user: JSON.parse(user) };
+    if (user) {
+      return { user: JSON.parse(user) };
     }
 
     return {} as IAuthState;
   });
+  const [error, setError] = useState<boolean>(false);
 
-  const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post('sessions', { email, password });
+  const { addToast } = useToast();
 
-    const { token, user } = response.data;
+  const signIn = useCallback(
+    async ({ email, password, isAdministrator }) => {
+      setError(false);
 
-    localStorage.setItem('@eCommerceTech:token', token);
-    localStorage.setItem('@eCommerceTech:user', JSON.stringify(user));
+      const response = await api.post('login', {
+        email,
+        senha: password,
+        administrador: isAdministrator,
+      });
 
-    setData({ token, user });
-  }, []);
+      if (response.data) {
+        const user = { ...response.data, administrador: isAdministrator };
+
+        localStorage.setItem('@eCommerceTech:user', JSON.stringify(user));
+
+        setData({ user });
+        return;
+      }
+
+      setError(true);
+      addToast({
+        title: 'Erro de acesso',
+        description: 'Usuário ou senha incorreto',
+        type: 'error',
+      });
+    },
+    [addToast],
+  );
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@eCommerceTech:token');
     localStorage.removeItem('@eCommerceTech:user');
 
     setData({} as IAuthState);
   }, []);
 
+  const signUp = useCallback(
+    async ({ name, email, password, isAdministrator }) => {
+      const response = await api.post('usuario', {
+        nome: name,
+        email,
+        senha: password,
+        administrador: isAdministrator,
+      });
+
+      const user = { ...response.data, administrador: isAdministrator };
+
+      localStorage.setItem('@eCommerceTech:user', JSON.stringify(user));
+
+      setData({ user });
+
+      addToast({
+        title: 'Acesso criado',
+        description: 'Usuário criado com sucesso!',
+        type: 'success',
+      });
+    },
+    [addToast],
+  );
+
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ user: data.user, error, signIn, signOut, signUp }}
+    >
       {children}
     </AuthContext.Provider>
   );

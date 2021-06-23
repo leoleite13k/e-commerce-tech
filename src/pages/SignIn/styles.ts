@@ -25,11 +25,11 @@ export const Container = styled.div`
       text-align: center;
       margin-bottom: 16px;
     }
-
-    > div {
-      margin-top: 12px;
-    }
   }
+`;
+
+export const ContentCheckBox = styled.div`
+  margin-top: 12px;
 `;
 
 export const ContentButton = styled.div`
