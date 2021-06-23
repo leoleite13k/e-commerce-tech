@@ -17,7 +17,7 @@ export const Add = styled.button`
   border-radius: 50%;
   background-color: ${lighten(0.05, '#222831')};
   border: none;
-  position: absolute;
+  position: fixed;
   bottom: 70px;
   right: 70px;
   transition: background-color 0.6s;

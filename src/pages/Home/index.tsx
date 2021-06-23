@@ -56,7 +56,7 @@ const Home: React.FC = () => {
 
             <Footer>
               <div>
-                <strong>{`R$ ${product.preco.toLocaleString()}`}</strong>
+                <strong>{`R$ ${product.preco}`}</strong>
                 <span>{product.nome}</span>
               </div>
               <button

@@ -40,7 +40,7 @@ const Home: React.FC = () => {
               </Portatil>
 
               <Column>
-                <strong>{`R$ ${product.preco.toLocaleString()}`}</strong>
+                <strong>{`R$ ${product.preco}`}</strong>
               </Column>
               <Counter>
                 <strong>{product.quantidade}</strong>

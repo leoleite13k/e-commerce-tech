@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { FaTag } from 'react-icons/fa';
 import { VscTrash } from 'react-icons/vsc';
+import { useHistory } from 'react-router-dom';
 
 import { useCard } from '../../hooks/card';
 import { usePurchase } from '../../hooks/purchase';
@@ -16,6 +17,7 @@ const Card: React.FC = () => {
     removeCard,
   } = useCard();
   const { addPurchase } = usePurchase();
+  const history = useHistory();
 
   const handleChangeValueProduct = useCallback(
     (event, id) => {
@@ -27,6 +29,11 @@ const Card: React.FC = () => {
   );
 
   const handleBuy = useCallback(async () => {
+    if (!localStorage.getItem('@eCommerceTech:user')) {
+      history.push('/signin');
+      return;
+    }
+
     await addPurchase({
       frete: data.frete || 0,
       total: Number(
