@@ -123,7 +123,7 @@ const CardProvider: React.FC = ({ children }) => {
   const clearCard = useCallback(() => {
     localStorage.removeItem('@eCommerceTech:card');
 
-    setData({} as ICardState);
+    setData({ products: [] } as ICardState);
   }, []);
 
   const changeValueProduct = useCallback(

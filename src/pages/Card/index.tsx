@@ -3,6 +3,7 @@ import { FaTag } from 'react-icons/fa';
 import { VscTrash } from 'react-icons/vsc';
 
 import { useCard } from '../../hooks/card';
+import { usePurchase } from '../../hooks/purchase';
 
 import { Container, Empty, Content, Total } from './styles';
 
@@ -14,6 +15,7 @@ const Card: React.FC = () => {
     changeValueProduct,
     removeCard,
   } = useCard();
+  const { addPurchase } = usePurchase();
 
   const handleChangeValueProduct = useCallback(
     (event, id) => {
@@ -23,6 +25,29 @@ const Card: React.FC = () => {
     },
     [changeValueProduct],
   );
+
+  const handleBuy = useCallback(async () => {
+    const newBuy = {
+      frete: data.frete || 0,
+      total: Number(
+        data.products
+          .reduce(
+            (accumulator, product) =>
+              accumulator + product.quantidade * product.preco,
+            0,
+          )
+          .toFixed(2),
+      ),
+      produtos: data.products.map(product => ({
+        id: product.id,
+        nome: product.nome,
+        preco: product.preco,
+        foto: product.foto,
+      })),
+    };
+
+    await addPurchase(newBuy);
+  }, [addPurchase, data.frete, data.products]);
 
   return (
     <Container>
@@ -70,7 +95,9 @@ const Card: React.FC = () => {
 
           <Total>
             <div>
-              <button type="button">Finalizar compra</button>
+              <button type="button" onClick={handleBuy}>
+                Finalizar compra
+              </button>
             </div>
             <div>
               <span>Quantidade</span>

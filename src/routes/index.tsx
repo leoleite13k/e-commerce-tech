@@ -10,6 +10,7 @@ import SignUp from '../pages/SignUp';
 import AdminHome from '../pages/Admin/Home';
 import AdminProduct from '../pages/Admin/Product';
 import Card from '../pages/Card';
+import Purchase from '../pages/Purchase';
 import Historic from '../pages/Historic';
 import Product from '../pages/Product';
 
@@ -28,6 +29,12 @@ const Routes: React.FC = () => {
       />
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
+      <Route
+        path="/purchase"
+        isPrivate
+        layout={LayoutDefault}
+        component={Purchase}
+      />
       <Route
         path="/historic"
         isPrivate

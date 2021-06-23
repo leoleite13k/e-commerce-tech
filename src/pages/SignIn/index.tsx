@@ -12,7 +12,6 @@ import Button from '../../components/Button';
 import { useAuth } from '../../hooks/auth';
 
 import { Container, ContentCheckBox, ContentButton } from './styles';
-import Loader from '../../components/Loader';
 
 const schema = Yup.object().shape({
   email: Yup.string().required('Informe o e-mail'),
