@@ -50,7 +50,7 @@ const SignUp: React.FC = () => {
           register={register}
           value={name}
           setValue={setValue}
-          error={errors?.email}
+          error={errors?.name}
           icon={() => <FiUser size={20} />}
         />
         <InputIcon

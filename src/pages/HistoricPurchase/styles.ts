@@ -20,7 +20,6 @@ export const Content = styled.div`
 export const Card = styled.div`
   position: relative;
   z-index: 2;
-  height: ${MAX_WIDTH_MEDIUM / 4}px;
   width: ${MAX_WIDTH_MEDIUM / 1.3}px;
   margin: 16px;
   padding: 16px;
@@ -31,7 +30,7 @@ export const Card = styled.div`
   transition: transform 0.6s;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-self: center;
 
   > h3 {
