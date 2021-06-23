@@ -7,11 +7,12 @@ import { useCard } from './card';
 
 import api from '../services/api';
 
-interface IProduct {
+export interface IProduct {
   id: number;
   nome: string;
   preco: number;
   foto?: string;
+  quantidade: number;
 }
 
 interface IPurchase {
@@ -87,6 +88,7 @@ const PurchaseProvider: React.FC = ({ children }) => {
         compraProdutos: produtos.map((product: IProduct) => ({
           id_produto: product.id,
           preco: product.preco,
+          quantidade: product.quantidade,
         })),
       });
 

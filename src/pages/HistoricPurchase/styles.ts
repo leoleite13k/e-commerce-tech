@@ -34,9 +34,16 @@ export const Card = styled.div`
   flex-direction: row;
   align-self: center;
 
-  &:hover {
-    transform: scale(1.06);
+  > h3 {
+    position: absolute;
+    top: 12px;
+    left: 12px;
   }
+`;
+
+export const Product = styled.div`
+  display: flex;
+  flex: 1;
 
   > div {
     display: flex;
@@ -45,15 +52,15 @@ export const Card = styled.div`
     padding: 12px;
 
     &:nth-child(1) {
-      position: relative;
-      align-items: flex-start;
+      height: 100%;
+      width: 100%;
+      align-items: center;
       justify-content: center;
       flex-direction: column;
 
-      > h3 {
-        position: absolute;
-        top: 12px;
-        left: 12px;
+      > img {
+        height: 150px;
+        width: 150px;
       }
     }
 
@@ -75,6 +82,65 @@ export const Card = styled.div`
 
       @media (min-width: ${MIN_WIDTH_LARGE}px) {
         padding-right: 72px;
+      }
+    }
+  }
+`;
+
+export const Total = styled.div`
+  height: 70px;
+  width: 100%;
+  max-width: ${MAX_WIDTH_MEDIUM / 1.3}px;
+  padding: 12px;
+  margin: 16px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+
+  > div {
+    margin: 0px 6px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    &:nth-child(1) {
+      align-items: center;
+      justify-content: center;
+
+      span {
+        margin-bottom: 4px;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+    }
+
+    &:nth-child(2) {
+      align-items: center;
+      justify-content: center;
+
+      span {
+        margin-bottom: 4px;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+    }
+
+    &:nth-child(3) {
+      align-items: center;
+      justify-content: center;
+
+      span {
+        margin-bottom: 4px;
+      }
+
+      strong {
+        font-weight: bold;
       }
     }
   }

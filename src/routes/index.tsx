@@ -12,6 +12,7 @@ import AdminProduct from '../pages/Admin/Product';
 import Card from '../pages/Card';
 import Purchase from '../pages/Purchase';
 import Historic from '../pages/Historic';
+import HistoricPurchase from '../pages/HistoricPurchase';
 import Product from '../pages/Product';
 
 import Route from './Route';
@@ -31,6 +32,7 @@ const Routes: React.FC = () => {
       <Route path="/signup" component={SignUp} />
       <Route
         path="/purchase"
+        exact
         isPrivate
         layout={LayoutDefault}
         component={Purchase}
@@ -40,6 +42,12 @@ const Routes: React.FC = () => {
         isPrivate
         layout={LayoutDefault}
         component={Historic}
+      />
+      <Route
+        path="/purchase/:id"
+        isPrivate
+        layout={LayoutDefault}
+        component={HistoricPurchase}
       />
       <Route
         path="/admin"

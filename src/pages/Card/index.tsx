@@ -27,7 +27,7 @@ const Card: React.FC = () => {
   );
 
   const handleBuy = useCallback(async () => {
-    const newBuy = {
+    await addPurchase({
       frete: data.frete || 0,
       total: Number(
         data.products
@@ -38,15 +38,8 @@ const Card: React.FC = () => {
           )
           .toFixed(2),
       ),
-      produtos: data.products.map(product => ({
-        id: product.id,
-        nome: product.nome,
-        preco: product.preco,
-        foto: product.foto,
-      })),
-    };
-
-    await addPurchase(newBuy);
+      produtos: data.products,
+    });
   }, [addPurchase, data.frete, data.products]);
 
   return (
