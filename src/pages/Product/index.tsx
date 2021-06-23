@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FiShoppingCart } from 'react-icons/fi';
+import { FaTag } from 'react-icons/fa';
 
 import { useProduct } from '../../hooks/product';
 import { useCard } from '../../hooks/card';
@@ -24,6 +25,7 @@ const Product: React.FC = () => {
           <Loader height="80px" />
         ) : (
           <>
+            {product?.promocao && <FaTag color="#00adb5" size={20} />}
             <Portatil>
               <img src={product?.foto} alt="produto" />
               <button

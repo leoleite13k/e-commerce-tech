@@ -12,6 +12,7 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,6 +23,14 @@ export const Wrapper = styled.div`
 
   -webkit-box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.1);
+
+  > svg {
+    position: absolute;
+    top: -2px;
+    left: -12px;
+
+    transform: rotate(84deg);
+  }
 
   > div {
     display: flex;
